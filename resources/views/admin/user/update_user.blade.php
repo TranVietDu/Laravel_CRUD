@@ -8,11 +8,6 @@
             @csrf
             {{method_field('put')}}
             <h2>Update User</h2>
-            <form action="{{route('users.destroy',[$user->id])}}" method="post">
-                @csrf
-                <input name="_method" type="hidden" value="DELETE">
-                <button type="submit" class="btn btn-xs btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'><i class="fa fa-trash"></i></button>
-            </form>
             <div class="form-group">
                 <input type="text" value="{{$user->name}}" class="form-control" name="name" placeholder="UserName">
                 <i class="text-danger">{{ $errors->first('name') }}</i>
@@ -30,7 +25,6 @@
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-lg btn-block">UPDATE</button>
             </div>
-
         </form>
     </div>
 </div>
