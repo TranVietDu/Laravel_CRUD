@@ -16,7 +16,7 @@ class ItWorkController extends Controller
      */
     public function index()
     {
-        $it_works=ItWork::orderBy('id','desc')->get();
+        $it_works=ItWork::orderBy('id','desc')->paginate(10);
         return view('admin.it_work.it_work',compact('it_works'));
     }
 

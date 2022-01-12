@@ -90,6 +90,7 @@
             </div>
         </div>
     </div>
+    {{$users->links("pagination::bootstrap-4")}}
 </div>
 <script>
     // Xóa nhiều

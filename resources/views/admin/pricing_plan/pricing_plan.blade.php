@@ -112,6 +112,7 @@
             </div>
         </div>
     </div>
+    {{$pricing_plans->links("pagination::bootstrap-4")}}
 </div>
 <script>
     // Xóa nhiều

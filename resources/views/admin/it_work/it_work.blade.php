@@ -76,6 +76,7 @@
             </div>
         </div>
     </div>
+    {{$it_works->links("pagination::bootstrap-4")}}
 </div>
 <script>
     // Xóa nhiều

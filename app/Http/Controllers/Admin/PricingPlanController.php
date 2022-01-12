@@ -11,7 +11,7 @@ class PricingPlanController extends Controller
 {
     public function index()
     {
-        $pricing_plans=PricingPlan::orderBy('id','desc')->get();
+        $pricing_plans=PricingPlan::orderBy('id','desc')->paginate(10);
         return view('admin.pricing_plan.pricing_plan',compact('pricing_plans'));
     }
 

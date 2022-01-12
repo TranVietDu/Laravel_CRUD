@@ -16,7 +16,7 @@ class UserManageController extends Controller
      */
     public function index()
     {
-        $users=User::orderBy('id','desc')->get();
+        $users=User::orderBy('id','desc')->paginate(10);
         return view('admin.user.user_manage',compact('users'));
     }
 
@@ -111,14 +111,12 @@ class UserManageController extends Controller
         $users=User::where('name','like','%'.$request->search.'%')
                     ->orwhere('email','like','%'.$request->search.'%')->get();
         foreach ($users as $key => $user) {
-                        
                             $output .= '<tr>
                             <td><input type="checkbox" name="ids" class="checkBoxClass" value=""></td>
                             <td>'.$user->id.'</td>
                             <td>'.$user->name.'</td>
                             <td>'.$user->email.'</td>
-                            <td>'.$user->role.'</td>
-                            <td><a href="/admin/users/'.$user->id.'/edit"><button class="btn btn-primary"><i class="fas fa-user-edit"></i></button></a></td>
+                            <td>' . ($user->role == "1" ? "Admin" :  "User") . '</td>
                             <td>
                                     <form action="/admin/users/'.$user->id.'" method="post">
                                     '.csrf_field().'
@@ -126,6 +124,7 @@ class UserManageController extends Controller
                                         <button type="submit" class="btn btn-xs btn-danger btn-flat show_confirm" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></button>
                                     </form>
                                </td>
+                               <td><a href="/admin/users/'.$user->id.'/edit"><button class="btn btn-primary"><i class="fas fa-user-edit"></i></button></a></td>
                             </tr>';
                         }
                     }

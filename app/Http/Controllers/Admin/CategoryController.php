@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories=Category::orderBy('id','desc')->get();
+        $categories=Category::orderBy('id','desc')->paginate(10);
         return view('admin.category.category',compact('categories'));
     }
 
@@ -104,7 +104,6 @@ class CategoryController extends Controller
         $output = '';
         $categories=Category::where('category','like','%'.$request->search.'%')->get();
         foreach ($categories as $key => $category) {
-                        
                             $output .= '<tr>
                             <td><input type="checkbox" name="ids" class="checkBoxClass" value=""></td>
                             <td>'.$category->id.'</td>
